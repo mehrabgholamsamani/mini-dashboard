@@ -491,3 +491,31 @@ a { color: inherit; }
   .span-2, .span-3{ grid-column: span 1; }
   .search{ min-width: 200px; }
 }
+/* ---------- Better badge/delta contrast in LIGHT MODE ---------- */
+html.theme-light .delta.good,
+html.theme-light .badge.good,
+html.theme-light .txAmount.pos {
+  color: #0f6a3b;            /* darker green */
+  background: rgba(15,106,59,0.10);
+  border-color: rgba(15,106,59,0.25);
+}
+
+html.theme-light .delta.bad,
+html.theme-light .badge.bad,
+html.theme-light .txAmount.neg {
+  color: #a0172a;            /* darker red */
+  background: rgba(160,23,42,0.10);
+  border-color: rgba(160,23,42,0.25);
+}
+
+html.theme-light .badge.warn {
+  color: #8a5a00;            /* darker amber */
+  background: rgba(138,90,0,0.10);
+  border-color: rgba(138,90,0,0.25);
+}
+
+html.theme-light .badge.info {
+  color: #0a4a8a;            /* darker blue */
+  background: rgba(10,74,138,0.10);
+  border-color: rgba(10,74,138,0.25);
+}
