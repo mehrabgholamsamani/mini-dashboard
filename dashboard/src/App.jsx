@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+// src/App.jsx
+import { useEffect, useMemo, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import StatCard from "./components/StatCard";
@@ -38,7 +39,7 @@ function AnalyticsPage({ data, range }) {
 
       <PageShell
         title="Notes"
-        subtitle="This is where you’d put KPIs, cohorts, funnels, etc."
+        subtitle="This is where you’d put funnels, cohorts, etc."
       >
         <div className="muted" style={{ lineHeight: 1.6 }}>
           <ul style={{ margin: "8px 0 0", paddingLeft: 18 }}>
@@ -80,7 +81,10 @@ function OrdersPage({ transactions }) {
             <h2>Orders</h2>
             <p className="muted">Latest transactions (placeholder for orders)</p>
           </div>
-          <button className="btnGhost" onClick={() => alert("Coming next: orders table + filters")}>
+          <button
+            className="btnGhost"
+            onClick={() => alert("Coming next: orders table + filters")}
+          >
             Add filters
           </button>
         </div>
@@ -102,7 +106,10 @@ function SettingsPage({ theme, setTheme }) {
             Toggle theme (currently {theme})
           </button>
 
-          <button className="btnGhost" onClick={() => alert("Add profile/settings form here")}>
+          <button
+            className="btnGhost"
+            onClick={() => alert("Add profile/settings form here")}
+          >
             Profile (placeholder)
           </button>
         </div>
@@ -155,7 +162,9 @@ function OverviewPage({ data, kpis, range }) {
             </div>
             <div className="pillRow">
               <span className="pill">Range: {range}</span>
-              <span className="pill">Forecast: {formatMoney(Math.round(kpis.revenue * 1.08))}</span>
+              <span className="pill">
+                Forecast: {formatMoney(Math.round(kpis.revenue * 1.08))}
+              </span>
             </div>
           </div>
           <RevenueChart series={data.revenue[range]} />
@@ -167,7 +176,10 @@ function OverviewPage({ data, kpis, range }) {
               <h2>Transactions</h2>
               <p className="muted">Latest activity</p>
             </div>
-            <button className="btnGhost" onClick={() => alert("Pretend we exported a CSV 😄")}>
+            <button
+              className="btnGhost"
+              onClick={() => alert("Pretend we exported a CSV 😄")}
+            >
               Export
             </button>
           </div>
@@ -195,6 +207,13 @@ export default function App() {
   const [theme, setTheme] = useState("dark"); // "light" | "dark"
   const [range, setRange] = useState("30d"); // 7d, 30d, 90d
 
+  // ✅ Apply theme to <html> so body background + everything inherits vars correctly
+  useEffect(() => {
+    const root = document.documentElement; // <html>
+    root.classList.toggle("theme-light", theme === "light");
+    root.classList.toggle("theme-dark", theme === "dark");
+  }, [theme]);
+
   const data = useMemo(() => seed(), []);
 
   const filteredUsers = useMemo(() => {
@@ -214,14 +233,17 @@ export default function App() {
     const users = Math.round(data.kpis.users * (0.9 + rangeMultiplier * 0.1));
     const churn = Math.max(
       0.5,
-      Math.min(6.5, data.kpis.churn + (range === "7d" ? 0.4 : range === "90d" ? -0.3 : 0))
+      Math.min(
+        6.5,
+        data.kpis.churn + (range === "7d" ? 0.4 : range === "90d" ? -0.3 : 0)
+      )
     );
 
     return { revenue, orders, users, churn };
   }, [data.kpis, rangeMultiplier, range]);
 
   return (
-    <div className={`app theme-${theme}`}>
+    <div className="app">
       <Sidebar active={active} setActive={setActive} />
 
       <main className="main">
@@ -234,15 +256,24 @@ export default function App() {
           setRange={setRange}
         />
 
-        {/* THE IMPORTANT PART: render different pages based on the sidebar */}
-        {active === "Overview" && <OverviewPage data={data} kpis={kpis} range={range} />}
+        {active === "Overview" && (
+          <OverviewPage data={data} kpis={kpis} range={range} />
+        )}
         {active === "Analytics" && <AnalyticsPage data={data} range={range} />}
-        {active === "Users" && <UsersPage users={filteredUsers} query={query} />}
-        {active === "Orders" && <OrdersPage transactions={data.transactions} />}
-        {active === "Settings" && <SettingsPage theme={theme} setTheme={setTheme} />}
+        {active === "Users" && (
+          <UsersPage users={filteredUsers} query={query} />
+        )}
+        {active === "Orders" && (
+          <OrdersPage transactions={data.transactions} />
+        )}
+        {active === "Settings" && (
+          <SettingsPage theme={theme} setTheme={setTheme} />
+        )}
 
         <footer className="footer">
-          <span className="muted">Now the sidebar actually changes pages ✅</span>
+          <span className="muted">
+            Theme is applied on &lt;html&gt; now, so light/dark should be stable ✅
+          </span>
         </footer>
       </main>
     </div>

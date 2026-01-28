@@ -12,7 +12,7 @@
   --focus: rgba(255,255,255,0.16);
 }
 
-.theme-light{
+html.theme-light{
   --bg: #f6f7fb;
   --panel: rgba(0,0,0,0.04);
   --panel2: rgba(0,0,0,0.06);
