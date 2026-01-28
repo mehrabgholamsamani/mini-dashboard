@@ -1,6 +1,4 @@
-/* =========
-   Base + theme
-   ========= */
+
 :root{
   --bg: #0b0f17;
   --panel: rgba(255,255,255,0.06);
@@ -46,9 +44,7 @@ a { color: inherit; }
   grid-template-columns: 280px 1fr;
 }
 
-/* =========
-   Sidebar
-   ========= */
+
 .sidebar{
   position: sticky;
   top:0;
@@ -135,9 +131,6 @@ a { color: inherit; }
 
 .miniTitle{ font-weight: 800; margin-bottom: 6px; }
 
-/* =========
-   Main + Topbar
-   ========= */
 .main{
   padding: 18px 18px 28px;
 }
@@ -220,9 +213,6 @@ a { color: inherit; }
   background: transparent;
 }
 
-/* =========
-   Grid + Cards
-   ========= */
 .grid{
   display:grid;
   gap: 14px;
@@ -278,9 +268,7 @@ a { color: inherit; }
   color: var(--muted);
 }
 
-/* =========
-   Stat cards
-   ========= */
+
 .statCard .statTop{
   display:flex;
   align-items:flex-start;
@@ -322,9 +310,7 @@ a { color: inherit; }
 .delta.good{ color: rgba(160, 255, 200, 0.95); }
 .delta.bad{ color: rgba(255, 170, 170, 0.95); }
 
-/* =========
-   Chart
-   ========= */
+
 .chartWrap{ margin-top: 8px; }
 .chart{
   width: 100%;
@@ -369,9 +355,6 @@ a { color: inherit; }
   padding-top: 8px;
 }
 
-/* =========
-   Table
-   ========= */
 .tableWrap{
   overflow: auto;
   border-radius: var(--radius2);
@@ -442,9 +425,6 @@ a { color: inherit; }
 .badge.bad{ color: rgba(255, 170, 170, 0.95); }
 .badge.info{ color: rgba(170, 210, 255, 0.95); }
 
-/* =========
-   Transactions
-   ========= */
 .txList{
   display:flex;
   flex-direction:column;
@@ -494,9 +474,7 @@ a { color: inherit; }
 .txAmount.pos{ color: rgba(160, 255, 200, 0.95); }
 .txAmount.neg{ color: rgba(255, 170, 170, 0.95); }
 
-/* =========
-   Footer + responsive
-   ========= */
+
 .footer{
   margin-top: 14px;
   padding: 10px 4px;
