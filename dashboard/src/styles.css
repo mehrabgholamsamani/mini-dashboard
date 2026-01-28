@@ -519,3 +519,10 @@ html.theme-light .badge.info {
   background: rgba(10,74,138,0.10);
   border-color: rgba(10,74,138,0.25);
 }
+html.theme-light .line {
+  stroke: #2563eb; /* clean blue (Tailwind blue-600 vibe) */
+}
+
+html.theme-light .area {
+  fill: rgba(37, 99, 235, 0.15); /* soft blue fill */
+}
